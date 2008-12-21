@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{micronaut-rails}
-  s.version = "0.0.1"
+  s.version = "0.0.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Chad Humphries"]
@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
   s.email = %q{chad@spicycode.com}
   s.executables = ["micronaut"]
   s.extra_rdoc_files = ["README", "LICENSE", "RSPEC-LICENSE"]
-  s.files = ["LICENSE", "README", "RSPEC-LICENSE", "Rakefile", "lib/autotest", "lib/autotest/discover.rb", "lib/autotest/micronaut-rails.rb", "lib/micronaut", "lib/micronaut/rails", "lib/micronaut/rails/controllers.rb", "lib/micronaut/rails/helpers.rb", "lib/micronaut/rails/matchers", "lib/micronaut/rails/matchers/controllers", "lib/micronaut/rails/matchers/controllers/redirect_to.rb", "lib/micronaut/rails/matchers/controllers/render_template.rb", "lib/micronaut/rails/mocking", "lib/micronaut/rails/mocking/with_mocha.rb", "lib/micronaut/rails/transactional_database_support.rb", "lib/micronaut-rails.rb", "examples/example_helper.rb", "examples/lib", "examples/lib/micronaut", "examples/lib/micronaut/rails", "examples/lib/micronaut/rails/behaviour_example.rb", "examples/lib/micronaut-rails_example.rb", "bin/micronaut"]
+  s.files = ["LICENSE", "README", "RSPEC-LICENSE", "Rakefile", "lib/autotest", "lib/autotest/discover.rb", "lib/autotest/micronaut-rails.rb", "lib/autotest/micronaut_rails.rb", "lib/micronaut", "lib/micronaut/rails", "lib/micronaut/rails/controllers.rb", "lib/micronaut/rails/helpers.rb", "lib/micronaut/rails/matchers", "lib/micronaut/rails/matchers/controllers", "lib/micronaut/rails/matchers/controllers/redirect_to.rb", "lib/micronaut/rails/matchers/controllers/render_template.rb", "lib/micronaut/rails/mocking", "lib/micronaut/rails/mocking/with_mocha.rb", "lib/micronaut/rails/transactional_database_support.rb", "lib/micronaut-rails.rb", "examples/example_helper.rb", "examples/lib", "examples/lib/micronaut", "examples/lib/micronaut/rails", "examples/lib/micronaut/rails/behaviour_example.rb", "examples/lib/micronaut-rails_example.rb", "bin/micronaut"]
   s.has_rdoc = true
   s.homepage = %q{http://spicycode.com}
   s.require_paths = ["lib"]

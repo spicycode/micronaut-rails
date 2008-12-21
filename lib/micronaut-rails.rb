@@ -13,7 +13,7 @@ module Micronaut
     def self.include_in(config)
       if config.mock_framework.to_s =~ /mocha/i
         require 'micronaut/rails/mocking/with_mocha'
-        Micronaut::Behaviour.send(:include, MicronautRails::Mocking::WithMocha)
+        Micronaut::Behaviour.send(:include, Micronaut::Rails::Mocking::WithMocha)
       end
       config.extend(Micronaut::Rails::TransactionalDatabaseSupport, :described_type => lambda { |dt| dt < ActiveRecord::Base })
       config.extend(Micronaut::Rails::Helpers, :described_type => lambda { |dt| dt.to_s.ends_with?('Helper') })

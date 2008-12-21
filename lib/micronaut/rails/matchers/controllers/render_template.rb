@@ -11,7 +11,6 @@ module Micronaut
           end
 
           def matches?(response)
-
             if response.respond_to?(:rendered_file)
               @actual = response.rendered_file
             else

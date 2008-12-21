@@ -20,7 +20,6 @@ module Micronaut
 
         end
 
-
         def stub_model(model_class, params = {})
           params = params.dup
           model = model_class.new
@@ -84,8 +83,6 @@ module Micronaut
             @@model_id += 1
           end
 
-        end
-        
       end
     end
   end
