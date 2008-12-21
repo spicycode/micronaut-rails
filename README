@@ -1,0 +1,16 @@
+= Micronaut Rails
+
+* http://github.com/spicycode/micronaut-rails
+
+== DESCRIPTION:
+
+Micronaut Rails is a set of extension to deal with rails mode testing. For the moment think of it is a prototype of
+RSpec lite.  Definitely pre alpha at the moment.
+
+== REQUIREMENTS:
+
++ Ruby 1.8
+
+== CREDITS:
+
+* RSpec for the great ideas and matchers
