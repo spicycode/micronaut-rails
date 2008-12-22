@@ -2,12 +2,12 @@
 
 Gem::Specification.new do |s|
   s.name = %q{micronaut-rails}
-  s.version = "0.0.2"
+  s.version = "0.0.3"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Chad Humphries"]
   s.autorequire = %q{micronaut-rails}
-  s.date = %q{2008-12-21}
+  s.date = %q{2008-12-22}
   s.default_executable = %q{micronaut}
   s.description = %q{An excellent replacement for the wheel...}
   s.email = %q{chad@spicycode.com}
