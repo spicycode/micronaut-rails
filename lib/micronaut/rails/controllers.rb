@@ -5,6 +5,21 @@ module Micronaut
       module InstanceMethods
         attr_reader :request, :response, :controller
 
+        def assert_routing(path, options, defaults={}, extras={}, message=nil)
+          method = options[:method] || :get
+          route_for(params_from(method, path)).should == path
+        end
+        
+        def route_for(options)
+          ActionController::Routing::Routes.reload if ActionController::Routing::Routes.empty?
+          ActionController::Routing::Routes.generate(options)
+        end
+
+        def params_from(method, path)
+          ActionController::Routing::Routes.reload if ActionController::Routing::Routes.empty?
+          ActionController::Routing::Routes.recognize_path(path, :method => method)
+        end
+          
       end
 
       module RenderOverrides
@@ -16,12 +31,14 @@ module Micronaut
         def render_views?
           @render_views
         end
-
+        
         def render(options=nil, deprecated_status_or_extra_options=nil, &block)
           if ::Rails::VERSION::STRING >= '2.0.0' && deprecated_status_or_extra_options.nil?
             deprecated_status_or_extra_options = {}
           end
-
+          # puts "\n[render(views => #{render_views?.inspect})] options => #{options.inspect}, caller => #{caller(0)[1]}"
+          response.headers['Status'] = interpret_status((options && options[:status]) || ::ActionController::Base::DEFAULT_RENDER_STATUS_CODE)
+                    
           unless block_given?
             unless render_views?
               if @template.respond_to?(:finder)
@@ -34,7 +51,7 @@ module Micronaut
                 end
               end
               (class << @template; self; end).class_eval do
-                
+
                 define_method :render_file do |*args|
                   @first_render ||= args[0] unless args[0] =~ /^layouts/
                   @_first_render ||= args[0] unless args[0] =~ /^layouts/
@@ -45,36 +62,12 @@ module Micronaut
                   PickedTemplate.new
                 end
 
-                define_method :render do |*args|
-                  if @_rendered
-                    opts = args[0]
-                    (@_rendered[:template] ||= opts[:file]) if opts[:file]
-                    (@_rendered[:partials][opts[:partial]] += 1) if opts[:partial]
-                  else
-                    super
-                  end
-                end
-                              
               end
-
-              (class << response; self; end).class_eval do
-                define_method :rendered_template do
-                  return options[:action] if options.has_key?(:action)
-                  nil
-                end
-              end
-          
+              
             end
-          end
-
-          # Just let render :text => 'whatever' fall through
-          types_that_require_render = (options && options.has_key?(:text))
+          end     
           
-          if render_views? || types_that_require_render
-            super(options, deprecated_status_or_extra_options, &block)
-          else
-            @performed_render = true
-          end
+          super(options, deprecated_status_or_extra_options, &block)
         end
 
       end
@@ -93,6 +86,7 @@ module Micronaut
         kls.send(:include, Micronaut::Rails::Matchers::Controllers)
 
         kls.before do
+          @controller.class.send :include, RenderOverrides
           @controller.class.send :include, ActionController::TestCase::RaiseActionExceptions
           @controller = self.class.described_type.new
           @request = ActionController::TestRequest.new
@@ -101,11 +95,6 @@ module Micronaut
           @controller.params = {}
           @controller.send(:initialize_current_url)
           @response.session = @request.session
-          # Place some methods in the meta class to stand in
-          # front of ActionController::Base
-          (class << @controller; self; end).class_eval do
-            include RenderOverrides
-          end
         end
 
 
