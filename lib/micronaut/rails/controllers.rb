@@ -93,6 +93,7 @@ module Micronaut
         kls.send(:include, Micronaut::Rails::Matchers::Controllers)
 
         kls.before do
+          @controller.class.send :include, ActionController::TestCase::RaiseActionExceptions
           @controller = self.class.described_type.new
           @request = ActionController::TestRequest.new
           @controller.request = @request
