@@ -88,7 +88,7 @@ module Micronaut
         kls.before do
           @controller.class.send :include, RenderOverrides
           @controller.class.send :include, ActionController::TestCase::RaiseActionExceptions
-          @controller = self.class.described_type.new
+          @controller = self.class.describes.new
           @request = ActionController::TestRequest.new
           @controller.request = @request
           @response = ActionController::TestResponse.new

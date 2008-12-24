@@ -37,8 +37,8 @@ module Micronaut
 
         def helper
           @helper_object ||= returning HelperObject.new do |helper_object|
-            if self.class.described_type.class == Module
-              helper_object.extend self.class.described_type
+            if self.class.describes.class == Module
+              helper_object.extend self.class.describes
             end
           end
         end
