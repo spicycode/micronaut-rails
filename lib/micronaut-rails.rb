@@ -1,5 +1,6 @@
 require 'action_controller'
 require 'action_controller/test_process'
+require 'micronaut/rails/configuration'
 require 'micronaut/rails/matchers/controllers/redirect_to'
 require 'micronaut/rails/matchers/controllers/render_template'
 require 'micronaut/rails/transactional_database_support'
