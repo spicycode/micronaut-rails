@@ -25,7 +25,7 @@ spec = Gem::Specification.new do |s|
   s.require_path = 'lib'
   s.autorequire = GEM
   s.add_dependency "actionpack", '>= 2.2.2'
-  s.add_dependency "spicycode-micronaut", Micronaut::Rails::Version::MICRONAUT_REQUIRED_VERSION
+  s.add_dependency "spicycode-micronaut", Micronaut::Rails::Version::MICRONAUT_VERSION_STRING
   s.files = %w(LICENSE README RSPEC-LICENSE Rakefile) + Dir.glob("{lib,examples}/**/*")
 end
 
