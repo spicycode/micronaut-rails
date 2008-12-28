@@ -6,6 +6,14 @@ describe Micronaut::Rails::Configuration do
     Micronaut::Configuration.included_modules.should include(Micronaut::Rails::Configuration)
   end
   
+  example "extending Micronaut with helper support" do
+    Micronaut::configuration.enable_helper_support
+  end
+  
+  example "extending Micronaut with helper support with filter options" do
+    Micronaut::configuration.enable_helper_support :behaviour => { :describes => lambda { |dt| dt.to_s.ends_with?('Helper') } }
+  end
+  
   it "should add a #rails method" do
     Micronaut.configuration.should respond_to(:rails)
   end
