@@ -10,6 +10,7 @@ RSpec lite.  Definitely pre alpha at the moment.
 == REQUIREMENTS:
 
 + Ruby 1.8
++ Micronaut (via spicycode-micronaut on GitHub) -- see Micronaut::Rails::Version::MICRONAUT_REQUIRED_VERSION for the required version of Micronaut for this version of micronaut-rails
 
 == CREDITS:
 

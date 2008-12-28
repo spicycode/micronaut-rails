@@ -1,9 +1,10 @@
 require 'rubygems'
 require 'rake/gempackagetask'
 require 'rubygems/specification'
+require './lib/micronaut/rails/version'
 
 GEM = "micronaut-rails"
-GEM_VERSION = "0.0.6"
+GEM_VERSION = Micronaut::Rails::Version::STRING
 AUTHOR = "Chad Humphries"
 EMAIL = "chad@spicycode.com"
 HOMEPAGE = "http://spicycode.com"
@@ -24,6 +25,7 @@ spec = Gem::Specification.new do |s|
   s.require_path = 'lib'
   s.autorequire = GEM
   s.add_dependency "actionpack", '>= 2.2.2'
+  s.add_dependency "spicycode-micronaut", Micronaut::Rails::Version::MICRONAUT_REQUIRED_VERSION
   s.files = %w(LICENSE README RSPEC-LICENSE Rakefile) + Dir.glob("{lib,examples}/**/*")
 end
 

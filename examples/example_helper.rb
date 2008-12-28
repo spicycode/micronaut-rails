@@ -1,6 +1,8 @@
 lib_path = File.expand_path(File.dirname(__FILE__) + "/../lib")
 $LOAD_PATH.unshift lib_path unless $LOAD_PATH.include?(lib_path)
 
+require 'micronaut/rails/version'
+gem "spicycode-micronaut", Micronaut::Rails::Version::MICRONAUT_REQUIRED_VERSION
 require 'micronaut'
 require 'micronaut-rails'
 require 'rubygems'
