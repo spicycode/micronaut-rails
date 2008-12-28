@@ -9,36 +9,24 @@ module Micronaut
       
       # :behaviour => { :describes => lambda { |dt| dt < ActiveRecord::Base }
       def enable_active_record_transactional_support(filter_options={})
-        if filter_options.empty?
-          ::Micronaut::Behaviour.send(:extend, ::Micronaut::Rails::TransactionalDatabaseSupport)
-        else
-          ::Micronaut.config.extend(::Micronaut::Rails::TransactionalDatabaseSupport, filter_options)
-        end
+        ::Micronaut.configuration.extend(::Micronaut::Rails::TransactionalDatabaseSupport, filter_options)
       end
       
       # :behaviour => { :describes => lambda { |dt| dt.to_s.ends_with?('Helper') }
       def enable_helper_support(filter_options={})
-        if filter_options.empty?
-          ::Micronaut::Behaviour.send(:extend, ::Micronaut::Rails::Helpers)
-        else
-          ::Micronaut.config.extend(::Micronaut::Rails::Helpers, filter_options)
-        end 
+        ::Micronaut.configuration.extend(::Micronaut::Rails::Helpers, filter_options)
       end
       
       # :behaviour => { :describes => lambda { |dt| dt < ActionController::Base } 
       def enable_controller_support(filter_options={})
-        if filter_options.empty?
-          ::Micronaut::Behaviour.send(:extend, ::Micronaut::Rails::Controllers)
-        else
-          ::Micronaut.config.extend(::Micronaut::Rails::Controllers, filter_options)
-        end
+        ::Micronaut.configuration.extend(::Micronaut::Rails::Controllers, filter_options)
       end
       
-      def enable_rails_specific_mocking_extensions
-        case ::Micronaut.config.mock_framework.to_s
+      def enable_rails_specific_mocking_extensions(filter_options={})
+        case ::Micronaut.configuration.mock_framework.to_s
         when /mocha/i
           require 'micronaut/rails/mocking/with_mocha'
-          Micronaut::Behaviour.send(:include, Micronaut::Rails::Mocking::WithMocha)
+          ::Micronaut.configuration.include(::Micronaut::Rails::Mocking::WithMocha, filter_options)
         end
       end
       
