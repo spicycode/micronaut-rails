@@ -27,13 +27,16 @@ module Micronaut
         when /mocha/i
           require 'micronaut/rails/mocking/with_mocha'
           ::Micronaut.configuration.include(::Micronaut::Rails::Mocking::WithMocha, filter_options)
+         when /rr/i
+          require 'micronaut/rails/mocking/with_rr'
+          ::Micronaut.configuration.include(::Micronaut::Rails::Mocking::WithRR, filter_options)
         end
       end
       
       def enable_reasonable_defaults!
-        enable_active_record_transactional_support :describes => lambda { |dt| dt < ::ActiveRecord::Base }
-        enable_helper_support :describes => lambda { |dt| dt.to_s.ends_with?('Helper') }
-        enable_controller_support :describes => lambda { |dt| dt < ::ActionController::Base }
+        enable_active_record_transactional_support :behaviour => { :describes => lambda { |dt| dt < ::ActiveRecord::Base } }
+        enable_helper_support :behaviour => { :describes => lambda { |dt| dt.to_s.ends_with?('Helper') } }
+        enable_controller_support :behaviour => { :describes => lambda { |dt| dt < ::ActionController::Base } }
         enable_rails_specific_mocking_extensions
       end
       

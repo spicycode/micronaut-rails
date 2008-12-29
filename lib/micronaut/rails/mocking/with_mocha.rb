@@ -3,29 +3,12 @@ module Micronaut
     module Mocking
       module WithMocha
 
-        module ModelStubber
-
-          def connection
-            raise MicronautRails::IllegalDataAccessException.new("stubbed models are not allowed to access the database")
-          end
-
-          def new_record?
-            id.nil?
-          end
-
-          def as_new_record
-            self.id = nil
-            self
-          end
-
-        end
-
         def stub_model(model_class, params = {})
           params = params.dup
           model = model_class.new
           model.id = params.delete(:id) || next_id
 
-          model.extend ModelStubber
+          model.extend Micronaut::Rails::Mocking::ModelStubber
           params.keys.each do |prop|
             model[prop] = params.delete(prop) if model.has_attribute?(prop)
           end

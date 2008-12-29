@@ -97,8 +97,6 @@ module Micronaut
           @response.session = @request.session
         end
 
-
-
       end
 
     end
