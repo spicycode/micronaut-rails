@@ -81,14 +81,17 @@ module Micronaut
       end
 
       def self.extended(kls)
+        Micronaut.configuration.trace { "In #{self} extended callback for #{kls}"}
+        
         kls.send(:include, ActionController::TestProcess)
         kls.send(:include, InstanceMethods)
         kls.send(:include, Micronaut::Rails::Matchers::Controllers)
 
         kls.before do
+          @controller = self.class.describes.new
+          Micronaut.configuration.trace { "Enhancing #{@controller.inspect} with Rails controller extensions" }
           @controller.class.send :include, RenderOverrides
           @controller.class.send :include, ActionController::TestCase::RaiseActionExceptions
-          @controller = self.class.describes.new
           @request = ActionController::TestRequest.new
           @controller.request = @request
           @response = ActionController::TestResponse.new
