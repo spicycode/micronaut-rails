@@ -36,7 +36,7 @@ module Micronaut
           if ::Rails::VERSION::STRING >= '2.0.0' && deprecated_status_or_extra_options.nil?
             deprecated_status_or_extra_options = {}
           end
-          # puts "\n[render(views => #{render_views?.inspect})] options => #{options.inspect}, caller => #{caller(0)[1]}"
+          Micronaut.configuration.trace { "In RenderOverrides#render with options => #{options.inspect}, deprecated_status_or_extra_options => #{deprecated_status_or_extra_options.inspect}, render_views? => #{render_views?.inspect}"}
           response.headers['Status'] = interpret_status((options && options[:status]) || ::ActionController::Base::DEFAULT_RENDER_STATUS_CODE)
                     
           unless block_given?
