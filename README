@@ -9,10 +9,15 @@ RSpec lite.  Definitely pre alpha at the moment.
 
 == REQUIREMENTS:
 
-* Ruby 1.8
+* Ruby 1.8.5+
 * ActionPack
 *  Micronaut (via spicycode-micronaut on GitHub) -- version numbers are kept in sync, excluding the fourth version part.  So 
 		micronaut-rails 0.1.7.5 should be compatible with micronaut 0.1.7, but micronaut-rails 0.1.8.0 would require micronaut >= 0.1.8.
+
+== ISSUES
+
+* No support for pure Rails fixtures (we use Factory Girl/Fixture Replacement instead, so send a patch if you want support for this)
+* In use in real-world projects on Rails 2.2+ - older versions may have issues.
 
 == CREDITS:
 
