@@ -37,7 +37,7 @@ module Micronaut
             deprecated_status_or_extra_options = {}
           end
           Micronaut.configuration.trace { "In RenderOverrides#render with options => #{options.inspect}, deprecated_status_or_extra_options => #{deprecated_status_or_extra_options.inspect}, render_views? => #{render_views?.inspect}"}
-          response.headers['Status'] = interpret_status((options && options[:status]) || ::ActionController::Base::DEFAULT_RENDER_STATUS_CODE)
+          response.headers['Status'] = interpret_status((options.is_a?(Hash) && options[:status]) || ::ActionController::Base::DEFAULT_RENDER_STATUS_CODE)
                     
           unless block_given?
             unless render_views?

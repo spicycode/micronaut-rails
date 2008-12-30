@@ -4,7 +4,7 @@ module Micronaut
       MAJOR = 0
       MINOR = 1
       TINY  = 8
-      MINISCULE = 0
+      MINISCULE = 1
       
       STRING = [MAJOR, MINOR, TINY, MINISCULE].join('.')
 
