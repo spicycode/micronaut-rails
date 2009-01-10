@@ -3,8 +3,8 @@ module Micronaut
     module Version
       MAJOR = 0
       MINOR = 1
-      TINY  = 8
-      MINISCULE = 1
+      TINY  = 9
+      MINISCULE = 0
       
       STRING = [MAJOR, MINOR, TINY, MINISCULE].join('.')
 
