@@ -41,6 +41,11 @@ def use_color?
   !ENV.has_key?('TM_MODE')
 end
 
+# allow including links to lighthouse tickets in examples, for regression tests, pending features, etc.
+def ticket(number)
+  %[http://relevance.lighthouseapp.com/projects/22819-micronaut/tickets/#{number}]
+end
+
 Micronaut.configure do |config|
   config.mock_with :mocha
   config.color_enabled = use_color?

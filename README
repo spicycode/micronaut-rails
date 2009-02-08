@@ -1,6 +1,7 @@
 = Micronaut Rails
 
 * http://github.com/spicycode/micronaut-rails
+* http://relevance.lighthouseapp.com/projects/22819-micronaut
 
 == DESCRIPTION:
 
@@ -16,7 +17,8 @@ RSpec lite.  Definitely pre alpha at the moment.
 
 == ISSUES
 
-* No support for pure Rails fixtures (we use Factory Girl/Fixture Replacement instead, so send a patch if you want support for this)
+* No support for pure Rails fixtures, and no plans to add it - we use Factory Girl/Fixture Replacement instead, so send a patch if you want support for this).
+* No support for Rails integration tests -- use Cucumber (http://github.com/aslakhellesoy/cucumber) instead!
 * In use in real-world projects on Rails 2.2+ - older versions may have issues.
 
 == CREDITS:

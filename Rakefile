@@ -1,14 +1,14 @@
 require 'rubygems'
 require 'rake/gempackagetask'
 require 'rubygems/specification'
-require './lib/micronaut/rails/version'
+require File.join(File.dirname(__FILE__), *%w[. lib micronaut rails version])
 
 GEM = "micronaut-rails"
 GEM_VERSION = Micronaut::Rails::Version::STRING
 AUTHOR = "Chad Humphries"
 EMAIL = "chad@spicycode.com"
-HOMEPAGE = "http://spicycode.com"
-SUMMARY = "An excellent replacement for the wheel..."
+HOMEPAGE = "http://github.com/spicycode/micronaut-rails"
+SUMMARY = "An excellent replacement for the wheel, Rails edition."
 
 spec = Gem::Specification.new do |s|
   s.name = GEM
@@ -33,16 +33,21 @@ Rake::GemPackageTask.new(spec) do |pkg|
   pkg.gem_spec = spec
 end
 
-desc "install the gem locally"
+desc "Install the gem locally"
 task :install => [:package] do
   sh %{sudo gem install pkg/#{GEM}-#{GEM_VERSION}}
 end
 
-desc "create a gemspec file"
+desc "Create a gemspec file"
 task :make_gemspec do
   File.open("#{GEM}.gemspec", "w") do |file|
     file.puts spec.to_ruby
   end
+end
+
+desc "Print the gemspec to stdout"
+task :puts_gemspec do
+  puts spec.to_ruby
 end
 
 desc 'Run all examples'
