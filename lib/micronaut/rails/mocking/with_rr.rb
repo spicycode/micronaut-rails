@@ -8,7 +8,7 @@ module Micronaut
         # add_stubs) if +stubs+ is passed.
         def mock_or_stub_model(model_class, mock_or_stub, options = {})
           model = model_class.new
-          model.extend Micronaut::Rails::Mocking::ModelStubber
+          model.extend ::Micronaut::Rails::Mocking::ModelStubber
           model_id = next_id
 
           stub(errors_stub = Object.new).count.returns(0)

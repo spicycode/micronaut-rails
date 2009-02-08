@@ -7,8 +7,8 @@ module Micronaut
           params = params.dup
           model = model_class.new
           model.id = params.delete(:id) || next_id
-
-          model.extend Micronaut::Rails::Mocking::ModelStubber
+          model.extend ::Micronaut::Rails::Mocking::ModelStubber
+          
           params.keys.each do |prop|
             model[prop] = params.delete(prop) if model.has_attribute?(prop)
           end

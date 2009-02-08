@@ -5,7 +5,7 @@ module Micronaut
       module ModelStubber
 
         def connection
-          raise MicronautRails::IllegalDataAccessException.new("stubbed/mocked models are not allowed to access the database")
+          raise ::Micronaut::Rails::IllegalDataAccessException.new("stubbed/mocked models are not allowed to access the database")
         end
 
         def new_record?
