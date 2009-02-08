@@ -5,11 +5,6 @@ module Micronaut
       module InstanceMethods
         attr_reader :request, :response, :controller
 
-        def assert_routing(path, options, defaults={}, extras={}, message=nil)
-          method = options[:method] || :get
-          route_for(params_from(method, path)).should == path
-        end
-        
         def route_for(options)
           ActionController::Routing::Routes.reload if ActionController::Routing::Routes.empty?
           ActionController::Routing::Routes.generate(options)
