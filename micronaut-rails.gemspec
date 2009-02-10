@@ -6,7 +6,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Chad Humphries"]
-  s.date = %q{2009-02-09}
+  s.date = %q{2009-02-10}
   s.description = %q{An excellent replacement for the wheel on rails...}
   s.email = %q{chad@spicycode.com}
   s.files = ["LICENSE", "Rakefile", "README", "RSPEC-LICENSE", "VERSION.yml", "lib/micronaut", "lib/micronaut/rails", "lib/micronaut/rails/configuration.rb", "lib/micronaut/rails/controllers.rb", "lib/micronaut/rails/extensions", "lib/micronaut/rails/extensions/active_record.rb", "lib/micronaut/rails/helpers.rb", "lib/micronaut/rails/matchers", "lib/micronaut/rails/matchers/controllers", "lib/micronaut/rails/matchers/controllers/redirect_to.rb", "lib/micronaut/rails/matchers/controllers/render_template.rb", "lib/micronaut/rails/mocking", "lib/micronaut/rails/mocking/model_stubber.rb", "lib/micronaut/rails/mocking/with_mocha.rb", "lib/micronaut/rails/mocking/with_rr.rb", "lib/micronaut/rails/transactional_database_support.rb", "lib/micronaut-rails.rb", "examples/example_helper.rb", "examples/lib", "examples/lib/micronaut", "examples/lib/micronaut/rails", "examples/lib/micronaut/rails/configuration_example.rb", "examples/lib/micronaut-rails_example.rb"]
