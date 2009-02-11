@@ -13,6 +13,8 @@ module Micronaut
           def matches?(response)
             if response.respond_to?(:rendered_file)
               @actual = response.rendered_file
+            elsif response.respond_to?(:captured_render)
+              @actual = @controller.captured_render
             else
               @actual = response.rendered_template.to_s
             end

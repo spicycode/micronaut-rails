@@ -1,3 +1,6 @@
+require 'action_controller'
+require 'action_controller/test_process'
+
 module Micronaut
   module Rails
     module Controllers
@@ -14,11 +17,11 @@ module Micronaut
           ActionController::Routing::Routes.reload if ActionController::Routing::Routes.empty?
           ActionController::Routing::Routes.recognize_path(path, :method => method)
         end
-          
+
       end
 
       module RenderOverrides
-        
+
         def render_views!
           @render_views = true
         end
@@ -27,42 +30,36 @@ module Micronaut
           @render_views
         end
         
-        def render(options=nil, deprecated_status_or_extra_options=nil, &block)
-          if ::Rails::VERSION::STRING >= '2.0.0' && deprecated_status_or_extra_options.nil?
-            deprecated_status_or_extra_options = {}
-          end
-          Micronaut.configuration.trace { "In RenderOverrides#render with options => #{options.inspect}, deprecated_status_or_extra_options => #{deprecated_status_or_extra_options.inspect}, render_views? => #{render_views?.inspect}"}
+        def render(options=nil, &block)
           response.headers['Status'] = interpret_status((options.is_a?(Hash) && options[:status]) || ::ActionController::Base::DEFAULT_RENDER_STATUS_CODE)
-                    
-          unless block_given?
-            unless render_views?
-              if @template.respond_to?(:finder)
-                (class << @template.finder; self; end).class_eval do
-                  define_method :file_exists? do; true; end
-                end
-              else
-                (class << @template; self; end).class_eval do
-                  define_method :file_exists? do; true; end
-                end
+
+          unless block_given? || render_views?
+            if @template.respond_to?(:finder)
+              (class << @template.finder; self; end).class_eval do
+                define_method :file_exists? do; true; end
               end
+            else
               (class << @template; self; end).class_eval do
-
-                define_method :render_file do |*args|
-                  @first_render ||= args[0] unless args[0] =~ /^layouts/
-                  @_first_render ||= args[0] unless args[0] =~ /^layouts/
-                end
-
-                define_method :_pick_template do |*args|
-                  @_first_render ||= args[0] unless args[0] =~ /^layouts/
-                  PickedTemplate.new
-                end
-
+                define_method :file_exists? do; true; end
               end
-              
             end
+            (class << @template; self; end).class_eval do
+
+              define_method :render_file do |*args|
+                @first_render ||= args[0] unless args[0] =~ /^layouts/
+                @_first_render ||= args[0] unless args[0] =~ /^layouts/
+              end
+
+              define_method :_pick_template do |*args|
+                @_first_render ||= args[0] unless args[0] =~ /^layouts/
+                PickedTemplate.new
+              end
+
+            end
+
           end     
-          
-          super(options, deprecated_status_or_extra_options, &block)
+
+          super(options, &block)
         end
 
       end
@@ -75,24 +72,18 @@ module Micronaut
         def render_partial(*ignore_args);  end
       end
 
-      def self.extended(kls)
-        Micronaut.configuration.trace { "In #{self} extended callback for #{kls}"}
-        
-        kls.send(:include, ActionController::TestProcess)
-        kls.send(:include, InstanceMethods)
-        kls.send(:include, Micronaut::Rails::Matchers::Controllers)
+      def self.extended(extended_behaviour)
+        extended_behaviour.send :include, ::ActionController::TestProcess, InstanceMethods, ::Micronaut::Rails::Matchers::Controllers
+        extended_behaviour.describes.send :include, RenderOverrides, ::ActionController::TestCase::RaiseActionExceptions
 
-        kls.before do
+        extended_behaviour.before do
           @controller = self.class.describes.new
-          Micronaut.configuration.trace { "Enhancing #{@controller.inspect} with Rails controller extensions" }
-          @controller.class.send :include, RenderOverrides
-          @controller.class.send :include, ActionController::TestCase::RaiseActionExceptions
-          @request = ActionController::TestRequest.new
-          @controller.request = @request
-          @response = ActionController::TestResponse.new
-          @controller.params = {}
-          @controller.send(:initialize_current_url)
+          @controller.request = @request = ::ActionController::TestRequest.new
+          @response = ::ActionController::TestResponse.new
           @response.session = @request.session
+          
+          @controller.params = {}
+          @controller.send(:initialize_current_url)          
         end
 
       end

@@ -15,5 +15,5 @@ module Micronaut
 end
 
 if defined?(::ActiveRecord::Base)
-  ::ActiveRecord::Base.send(:include, Micronaut::Rails::Extensions::ActiveRecord)
+  ::ActiveRecord::Base.send(:include, ::Micronaut::Rails::Extensions::ActiveRecord)
 end
