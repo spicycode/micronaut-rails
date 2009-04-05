@@ -8,8 +8,8 @@ begin
     s.description = "An excellent replacement for the wheel on rails..."
     s.authors = ["Chad Humphries"] 
     s.files =  FileList["[A-Z]*", "{bin,lib,examples}/**/*"] 
-    s.add_dependency "actionpack", '>= 2.2.2'
-    s.add_dependency "spicycode-micronaut", '>= 0.2.2'
+    s.add_dependency "actionpack", '>= 2.3.0'
+    s.add_dependency "spicycode-micronaut", '>= 0.2.7'
   end 
 rescue LoadError 
   puts "Jeweler, or one of its dependencies, is not available. Install it with: sudo gem install technicalpickles-jeweler -s http://gems.github.com" 
