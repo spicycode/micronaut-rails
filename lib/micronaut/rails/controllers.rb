@@ -72,7 +72,7 @@ module Micronaut
         extended_behaviour.before do
           @request = ::ActionController::TestRequest.new
           @response = ::ActionController::TestResponse.new
-          @controller ||= self.class.describes.new
+          @controller = self.class.describes.new
 
           @controller.request = @request
           @controller.params = {}
