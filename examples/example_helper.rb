@@ -11,6 +11,7 @@ rescue LoadError => e
   puts
   exit(1)
 end
+require 'action_controller'
 require 'micronaut'
 require 'micronaut-rails'
 
