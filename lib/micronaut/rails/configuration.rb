@@ -34,7 +34,7 @@ module Micronaut
       end
       
       def enable_reasonable_defaults!
-        enable_active_record_transactional_support :behaviour => { :describes => lambda { |dt| dt < ::ActiveRecord::Base } }
+        enable_active_record_transactional_support
         enable_helper_support :behaviour => { :describes => lambda { |dt| dt.to_s.ends_with?('Helper') } }
         enable_controller_support :behaviour => { :describes => lambda { |dt| dt < ::ActionController::Base } }
         enable_rails_specific_mocking_extensions
