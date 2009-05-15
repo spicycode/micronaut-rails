@@ -15,7 +15,7 @@ require 'action_controller'
 require 'micronaut'
 require 'micronaut-rails'
 
-gem :mocha
+gem "mocha"
 
 module Micronaut  
   module Matchers
