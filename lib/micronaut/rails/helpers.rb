@@ -75,7 +75,7 @@ module Micronaut
         end
 
         kls.before do
-          @controller = HelperController.new
+          @controller = ::Micronaut::Rails::Helpers::HelperController.new
           @request = ActionController::TestRequest.new
           @response = ActionController::TestResponse.new
           @response.session = @request.session
