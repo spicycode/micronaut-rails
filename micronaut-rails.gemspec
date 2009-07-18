@@ -2,47 +2,47 @@
 
 Gem::Specification.new do |s|
   s.name = %q{micronaut-rails}
-  s.version = "0.3.1"
+  s.version = "0.3.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Chad Humphries"]
-  s.date = %q{2009-05-15}
+  s.date = %q{2009-07-18}
   s.description = %q{An excellent replacement for the wheel on rails...}
   s.email = %q{chad@spicycode.com}
   s.extra_rdoc_files = [
     "LICENSE",
-    "README"
+     "README"
   ]
   s.files = [
     "LICENSE",
-    "README",
-    "RSPEC-LICENSE",
-    "Rakefile",
-    "VERSION.yml",
-    "examples/example_helper.rb",
-    "examples/lib/micronaut-rails_example.rb",
-    "examples/lib/micronaut/rails/configuration_example.rb",
-    "lib/micronaut-rails.rb",
-    "lib/micronaut/rails/configuration.rb",
-    "lib/micronaut/rails/controllers.rb",
-    "lib/micronaut/rails/extensions/active_record.rb",
-    "lib/micronaut/rails/helpers.rb",
-    "lib/micronaut/rails/matchers/controllers/redirect_to.rb",
-    "lib/micronaut/rails/matchers/controllers/render_template.rb",
-    "lib/micronaut/rails/mocking/model_stubber.rb",
-    "lib/micronaut/rails/mocking/with_mocha.rb",
-    "lib/micronaut/rails/mocking/with_rr.rb",
-    "lib/micronaut/rails/transactional_database_support.rb"
+     "README",
+     "RSPEC-LICENSE",
+     "Rakefile",
+     "VERSION.yml",
+     "examples/example_helper.rb",
+     "examples/lib/micronaut-rails_example.rb",
+     "examples/lib/micronaut/rails/configuration_example.rb",
+     "lib/micronaut-rails.rb",
+     "lib/micronaut/rails/configuration.rb",
+     "lib/micronaut/rails/controllers.rb",
+     "lib/micronaut/rails/extensions/active_record.rb",
+     "lib/micronaut/rails/helpers.rb",
+     "lib/micronaut/rails/matchers/controllers/redirect_to.rb",
+     "lib/micronaut/rails/matchers/controllers/render_template.rb",
+     "lib/micronaut/rails/mocking/model_stubber.rb",
+     "lib/micronaut/rails/mocking/with_mocha.rb",
+     "lib/micronaut/rails/mocking/with_rr.rb",
+     "lib/micronaut/rails/transactional_database_support.rb"
   ]
   s.homepage = %q{http://github.com/spicycode/micronaut-rails}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.3.3}
+  s.rubygems_version = %q{1.3.4}
   s.summary = %q{An excellent replacement for the wheel on rails...}
   s.test_files = [
     "examples/example_helper.rb",
-    "examples/lib/micronaut/rails/configuration_example.rb",
-    "examples/lib/micronaut-rails_example.rb"
+     "examples/lib/micronaut/rails/configuration_example.rb",
+     "examples/lib/micronaut-rails_example.rb"
   ]
 
   if s.respond_to? :specification_version then
