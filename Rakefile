@@ -9,13 +9,13 @@ begin
     s.authors = ["Chad Humphries"] 
     s.files =  FileList["[A-Z]*", "{bin,lib,examples}/**/*"] 
     s.add_dependency "actionpack", '>= 2.3.0'
-    s.add_dependency "spicycode-micronaut", '>= 0.2.7'
+    s.add_dependency "micronaut", '>= 0.3.0'
   end 
 rescue LoadError 
   puts "Jeweler, or one of its dependencies, is not available. Install it with: sudo gem install technicalpickles-jeweler -s http://gems.github.com" 
 end
 
-gem 'spicycode-micronaut'
+gem 'micronaut'
 require 'micronaut/rake_task'
 
 desc "Run all micronaut examples"
