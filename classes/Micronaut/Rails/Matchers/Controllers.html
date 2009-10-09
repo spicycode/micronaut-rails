@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>Micronaut::Rails::Matchers::Controllers</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="../../../../css/reset.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="../../../../css/main.css" type="text/css" media="screen" />
+    <script src="../../../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../../js/main.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>     
+    <div class="banner">
+        <h1>
+            <span class="type">Module</span> 
+            Micronaut::Rails::Matchers::Controllers 
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../../../files/lib/micronaut/rails/matchers/controllers/redirect_to_rb.html">lib/micronaut/rails/matchers/controllers/redirect_to.rb</a></li>
+            
+            <li><a href="../../../../files/lib/micronaut/rails/matchers/controllers/render_template_rb.html">lib/micronaut/rails/matchers/controllers/render_template.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+    
+
+    
+
+    
+    
+
+    
+    
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+    
+        <dt>R</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M000031">redirect_to</a>,</li>
+                
+                <li><a href="#M000032">render_template</a></li>
+                
+            </ul>
+        </dd>
+    
+    </dl>
+    
+
+    
+
+    
+
+    
+    <div class="sectiontitle">Classes and Modules</div>
+    <ul>
+        
+        <li><span class="type">CLASS</span> <a href="Controllers/RedirectTo.html">Micronaut::Rails::Matchers::Controllers::RedirectTo</a></li>
+        
+        <li><span class="type">CLASS</span> <a href="Controllers/RenderTemplate.html">Micronaut::Rails::Matchers::Controllers::RenderTemplate</a></li>
+        
+    </ul>
+    
+
+    
+
+    
+
+    
+            <div class="sectiontitle">Instance Public methods</div>
+            
+            <div class="method">
+                <div class="title" id="M000031">
+                    
+                    <a name="M000031"></a><b>response.should redirect_to(url)
+response.should redirect_to(:action => action_name)
+response.should redirect_to(:controller => controller_name, :action => action_name)
+response.should_not redirect_to(url)
+response.should_not redirect_to(:action => action_name)
+response.should_not redirect_to(:controller => controller_name, :action => action_name)
+</b>
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Passes if the response is a redirect to the url, action or
+controller/action. Useful in controller specs (integration or isolation
+mode).
+</p>
+<h2>Examples</h2>
+<pre>
+  response.should redirect_to(&quot;path/to/action&quot;)
+  response.should redirect_to(&quot;http://test.host/path/to/action&quot;)
+  response.should redirect_to(:action =&gt; 'list')
+</pre>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M000031_source')" id="l_M000031_source">show</a>
+                        
+                        | <a href="http://github.com/spicycode/micronaut-rails/blob/dfcefb71efb9c7e3050821ad72b373d492ed271f/lib/micronaut/rails/matchers/controllers/redirect_to.rb#L108" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M000031_source" class="dyn-source">
+                        <pre><span class="ruby-comment cmt"># File lib/micronaut/rails/matchers/controllers/redirect_to.rb, line 108</span>
+        <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">redirect_to</span>(<span class="ruby-identifier">opts</span>)
+          <span class="ruby-constant">RedirectTo</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">request</span>, <span class="ruby-identifier">opts</span>)
+        <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M000032">
+                    
+                    <a name="M000032"></a><b>response.should render_template(template)
+response.should_not render_template(template)
+</b>
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+For use in controller code examples (integration or isolation mode).
+</p>
+<p>
+Passes if the specified template (view file) is rendered by the response.
+This file can be any view file, including a partial. However if it is a
+partial it must be rendered directly i.e. you can&#8217;t detect that a
+partial has been rendered as part of a view using render_template. For that
+you should use a message expectation (mock) instead:
+</p>
+<pre>
+  controller.should_receive(:render).with(:partial =&gt; 'path/to/partial')
+</pre>
+<p>
+<tt>template</tt> can include the controller path. It can also include an
+optional extension, which you only need to use when there is ambiguity.
+</p>
+<p>
+Note that partials must be spelled with the preceding underscore.
+</p>
+<h2>Examples</h2>
+<pre>
+  response.should render_template('list')
+  response.should render_template('same_controller/list')
+  response.should render_template('other_controller/list')
+
+  # with extensions
+  response.should render_template('list.rjs')
+  response.should render_template('list.haml')
+  response.should render_template('same_controller/list.rjs')
+  response.should render_template('other_controller/list.rjs')
+
+  # partials
+  response.should render_template('_a_partial')
+  response.should render_template('same_controller/_a_partial')
+  response.should render_template('other_controller/_a_partial')
+</pre>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M000032_source')" id="l_M000032_source">show</a>
+                        
+                        | <a href="http://github.com/spicycode/micronaut-rails/blob/f606e4fff3919a3776a599fe1942e3d9e79ea8f6/lib/micronaut/rails/matchers/controllers/render_template.rb#L109" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M000032_source" class="dyn-source">
+                        <pre><span class="ruby-comment cmt"># File lib/micronaut/rails/matchers/controllers/render_template.rb, line 109</span>
+        <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">render_template</span>(<span class="ruby-identifier">path</span>)
+          <span class="ruby-constant">RenderTemplate</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">path</span>.<span class="ruby-identifier">to_s</span>, <span class="ruby-ivar">@controller</span>)
+        <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+</div>
+    </div>
+  </body>
+</html>    
