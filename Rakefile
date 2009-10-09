@@ -11,6 +11,7 @@ begin
     s.add_dependency "actionpack", '>= 2.3.0'
     s.add_dependency "micronaut", '>= 0.3.0'
   end 
+  Jeweler::GemcutterTasks.new
 rescue LoadError 
   puts "Jeweler, or one of its dependencies, is not available. Install it with: sudo gem install technicalpickles-jeweler -s http://gems.github.com" 
 end
