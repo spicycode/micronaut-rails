@@ -13,7 +13,7 @@ begin
   end 
   Jeweler::GemcutterTasks.new
 rescue LoadError 
-  puts "Jeweler, or one of its dependencies, is not available. Install it with: sudo gem install technicalpickles-jeweler -s http://gems.github.com" 
+  puts "Jeweler, or one of its dependencies, is not available. Install it with: gem install jeweler" 
 end
 
 gem 'micronaut'
@@ -25,14 +25,30 @@ Micronaut::RakeTask.new :examples do |t|
 end
 
 namespace :examples do
-  
   desc "Run all micronaut examples using rcov"
   Micronaut::RakeTask.new :coverage do |t|
     t.pattern = "examples/**/*_example.rb"
     t.rcov = true
     t.rcov_opts = %[--exclude "examples/*,gems/*,db/*,/Library/Ruby/*,config/*" --text-summary  --sort coverage]
   end
-
 end
 
-task :default => 'examples:coverage'
+task :default => [:check_dependencies, :examples]
+
+begin
+  %w{sdoc sdoc-helpers rdiscount}.each { |name| gem name }
+  require 'sdoc_helpers'
+rescue LoadError => ex
+  puts "sdoc support not enabled:"
+  puts ex.inspect
+end
+
+require 'rake/rdoctask'
+Rake::RDocTask.new do |rdoc|
+  version = File.exist?('VERSION') ? File.read('VERSION') : ''
+  rdoc.rdoc_dir = 'rdoc'
+  rdoc.title = "micronaut rails #{version}"
+  rdoc.rdoc_files.include('README*')
+  rdoc.rdoc_files.include('lib/**/*.rb')
+end
+
