@@ -3,14 +3,15 @@ $LOAD_PATH.unshift lib_path unless $LOAD_PATH.include?(lib_path)
 
 require 'rubygems'
 
-begin
-  gem "micronaut", ">= 0.3.0"
-rescue LoadError => e
-  puts "\nERROR - This version of micronaut-rails requires micronaut 0.2.2 or higher."
-  puts "gem install micronaut --version 0.2.2"
-  puts
-  exit(1)
-end
+# begin
+#   gem "micronaut", ">= 0.3.0"
+# rescue LoadError => e
+#   puts "\nERROR - This version of micronaut-rails requires micronaut 0.2.2 or higher."
+#   puts "gem install micronaut --version 0.2.2"
+#   puts
+#   exit(1)
+# en
+gem "actionpack", '~> 2.3'
 require 'action_controller'
 require 'micronaut'
 require 'micronaut-rails'

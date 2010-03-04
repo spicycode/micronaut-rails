@@ -8,7 +8,7 @@ begin
     s.description = "An excellent replacement for the wheel on rails..."
     s.authors = ["Chad Humphries"] 
     s.files =  FileList["[A-Z]*", "{bin,lib,examples}/**/*"] 
-    s.add_dependency "actionpack", '>= 2.3.0'
+    s.add_dependency "actionpack", '~> 2.3.0'
     s.add_dependency "rspec-rails", '>= 2.0.0.a1'
   end 
   Jeweler::GemcutterTasks.new
@@ -16,7 +16,7 @@ rescue LoadError
   puts "Jeweler, or one of its dependencies, is not available. Install it with: gem install jeweler" 
 end
 
-require 'rspec/core'
+require 'rspec/core/rake_task'
 
 desc "Run all micronaut examples"
 Rspec::Core::RakeTask.new :examples do |t|
