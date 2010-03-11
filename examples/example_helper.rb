@@ -2,6 +2,8 @@ lib_path = File.expand_path(File.dirname(__FILE__) + "/../lib")
 $LOAD_PATH.unshift lib_path unless $LOAD_PATH.include?(lib_path)
 
 require 'rubygems'
+gem "rspec-core", "~> 2.0.0.beta"
+require 'rspec/core'
 
 # begin
 #   gem "micronaut", ">= 0.3.0"
@@ -18,23 +20,25 @@ require 'micronaut-rails'
 
 gem "mocha"
 
-module Micronaut  
-  module Matchers
-    def fail
-      raise_error(::Micronaut::Expectations::ExpectationNotMetError)
-    end
+module Rspec
+  module Core
+    module Matchers
+      def fail
+        raise_error(::Rspec::Expectations::ExpectationNotMetError)
+      end
 
-    def fail_with(message)
-      raise_error(::Micronaut::Expectations::ExpectationNotMetError, message)
+      def fail_with(message)
+        raise_error(::Rspec::Expectations::ExpectationNotMetError, message)
+      end
     end
   end
 end
 
 def remove_last_describe_from_world
-  Micronaut.world.behaviours.pop
+  Rspec::Core.world.example_groups.pop
 end
 
-class DummyFormatter <  Micronaut::Formatters::BaseTextFormatter; end
+class DummyFormatter < Rspec::Core::Formatters::BaseTextFormatter; end
 
 def dummy_reporter
   DummyFormatter.new({}, StringIO.new)
@@ -49,7 +53,7 @@ def ticket(number)
   %[http://relevance.lighthouseapp.com/projects/22819-micronaut/tickets/#{number}]
 end
 
-Micronaut.configure do |config|
+Rspec.configure do |config|
   config.mock_with :mocha
   config.color_enabled = use_color?
   config.formatter = :documentation

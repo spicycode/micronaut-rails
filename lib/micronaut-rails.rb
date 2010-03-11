@@ -1,3 +1,4 @@
+require 'rspec/core'
 require 'micronaut/rails/configuration'
 require 'micronaut/rails/matchers/controllers/redirect_to'
 require 'micronaut/rails/matchers/controllers/render_template'
