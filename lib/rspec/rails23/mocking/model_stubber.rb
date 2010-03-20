@@ -1,11 +1,11 @@
-module Micronaut
-  module Rails
+module Rspec
+  module Rails23
     module Mocking
 
       module ModelStubber
 
         def connection
-          raise ::Micronaut::Rails::IllegalDataAccessException.new("stubbed/mocked models are not allowed to access the database")
+          raise ::Rspec::Rails23::IllegalDataAccessException.new("stubbed/mocked models are not allowed to access the database")
         end
 
         def new_record?

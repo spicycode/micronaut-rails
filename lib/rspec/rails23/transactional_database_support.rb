@@ -1,5 +1,5 @@
-module Micronaut
-  module Rails
+module Rspec
+  module Rails23
     module TransactionalDatabaseSupport
 
       module InstanceMethods

@@ -1,18 +1,18 @@
-= Micronaut Rails
+= Rspec Rails
 
 * http://github.com/spicycode/micronaut-rails
 * http://relevance.lighthouseapp.com/projects/22819-micronaut
 
 == DESCRIPTION:
 
-Micronaut Rails is a set of extension to deal with rails mode testing. For the moment think of it is a prototype of
+Rspec Rails is a set of extension to deal with rails mode testing. For the moment think of it is a prototype of
 RSpec lite.  Definitely pre alpha at the moment.
 
 == REQUIREMENTS:
 
 * Ruby 1.8.6+
 * ActionPack
-* Micronaut (via spicycode-micronaut on GitHub) 
+* Rspec (via spicycode-micronaut on GitHub) 
 
 == ISSUES
 

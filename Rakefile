@@ -7,7 +7,7 @@ begin
     s.homepage = "http://github.com/spicycode/micronaut-rails" 
     s.description = "An excellent replacement for the wheel on rails..."
     s.authors = ["Chad Humphries"] 
-    s.files =  FileList["[A-Z]*", "{bin,lib,examples}/**/*"] 
+    s.files =  FileList["[A-Z]*", "{bin,lib,spec}/**/*"] 
     s.add_dependency "actionpack", '~> 2.3.0'
     s.add_dependency "rspec-rails", '>= 2.0.0.a1'
   end 
@@ -18,21 +18,21 @@ end
 
 require 'rspec/core/rake_task'
 
-desc "Run all micronaut examples"
-Rspec::Core::RakeTask.new :examples do |t|
-  t.pattern = "examples/**/*_example.rb"
+desc "Run all micronaut specs"
+Rspec::Core::RakeTask.new :spec do |t|
+  t.pattern = "spec/**/*_spec.rb"
 end
 
-namespace :examples do
-  desc "Run all micronaut examples using rcov"
+namespace :spec do
+  desc "Run all micronaut specs using rcov"
   Rspec::Core::RakeTask.new :coverage do |t|
-    t.pattern = "examples/**/*_example.rb"
+    t.pattern = "spec/**/*_spec.rb"
     t.rcov = true
-    t.rcov_opts = %[--exclude "examples/*,gems/*,db/*,/Library/Ruby/*,config/*" --text-summary  --sort coverage]
+    t.rcov_opts = %[--exclude "spec/*,gems/*,db/*,/Library/Ruby/*,config/*" --text-summary  --sort coverage]
   end
 end
 
-task :default => [:check_dependencies, :examples]
+task :default => [:check_dependencies, :spec]
 
 begin
   %w{sdoc sdoc-helpers rdiscount}.each { |name| gem name }

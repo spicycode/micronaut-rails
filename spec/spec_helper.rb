@@ -2,21 +2,12 @@ lib_path = File.expand_path(File.dirname(__FILE__) + "/../lib")
 $LOAD_PATH.unshift lib_path unless $LOAD_PATH.include?(lib_path)
 
 require 'rubygems'
-gem "rspec-core", "~> 2.0.0.beta"
-require 'rspec/core'
-
-# begin
-#   gem "micronaut", ">= 0.3.0"
-# rescue LoadError => e
-#   puts "\nERROR - This version of micronaut-rails requires micronaut 0.2.2 or higher."
-#   puts "gem install micronaut --version 0.2.2"
-#   puts
-#   exit(1)
-# en
 gem "actionpack", '~> 2.3'
 require 'action_controller'
-require 'micronaut'
-require 'micronaut-rails'
+
+gem "rspec-core", "~> 2.0.0.beta"
+require 'rspec/core'
+require 'rspec-rails23'
 
 gem "mocha"
 
@@ -48,14 +39,10 @@ def use_color?
   !ENV.has_key?('TM_MODE')
 end
 
-# allow including links to lighthouse tickets in examples, for regression tests, pending features, etc.
-def ticket(number)
-  %[http://relevance.lighthouseapp.com/projects/22819-micronaut/tickets/#{number}]
-end
-
 Rspec.configure do |config|
   config.mock_with :mocha
   config.color_enabled = use_color?
   config.formatter = :documentation
   config.filter_run :focused => true
+  config.run_all_when_everything_filtered = true
 end

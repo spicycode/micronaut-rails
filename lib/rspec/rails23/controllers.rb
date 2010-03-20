@@ -1,8 +1,8 @@
 require 'action_controller'
 require 'action_controller/test_process'
 
-module Micronaut
-  module Rails
+module Rspec
+  module Rails23
     module Controllers
 
       module InstanceMethods
@@ -66,7 +66,7 @@ module Micronaut
       end
 
       def self.extended(extended_behaviour)
-        extended_behaviour.send :include, ::ActionController::TestProcess, InstanceMethods, ::Micronaut::Rails::Matchers::Controllers
+        extended_behaviour.send :include, ::ActionController::TestProcess, InstanceMethods, ::Rspec::Rails23::Matchers::Controllers
         extended_behaviour.describes.send :include, RenderOverrides, ::ActionController::TestCase::RaiseActionExceptions
 
         extended_behaviour.before do

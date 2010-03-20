@@ -1,5 +1,5 @@
-module Micronaut
-  module Rails
+module Rspec
+  module Rails23
     
     module Configuration
       
@@ -9,27 +9,27 @@ module Micronaut
       
       # :behaviour => { :describes => lambda { |dt| dt < ActiveRecord::Base }
       def enable_active_record_transactional_support(filter_options={})
-        Rspec::Core.configuration.extend(::Micronaut::Rails::TransactionalDatabaseSupport, filter_options)
+        Rspec.configuration.extend(::Rspec::Rails23::TransactionalDatabaseSupport, filter_options)
       end
       
       # :behaviour => { :describes => lambda { |dt| dt.to_s.ends_with?('Helper') }
       def enable_helper_support(filter_options={})
-        Rspec::Core.configuration.extend(::Micronaut::Rails::Helpers, filter_options)
+        Rspec.configuration.extend(::Rspec::Rails23::Helpers, filter_options)
       end
       
       # :behaviour => { :describes => lambda { |dt| dt < ActionController::Base } 
       def enable_controller_support(filter_options={})
-        Rspec::Core.configuration.extend(::Micronaut::Rails::Controllers, filter_options)
+        Rspec.configuration.extend(::Rspec::Rails23::Controllers, filter_options)
       end
       
       def enable_rails_specific_mocking_extensions(filter_options={})
-        case Rspec::Core.configuration.mock_framework.to_s
+        case Rspec.configuration.mock_framework.to_s
         when /mocha/i
-          require 'micronaut/rails/mocking/with_mocha'
-          Rspec::Core.configuration.include(::Micronaut::Rails::Mocking::WithMocha, filter_options)
+          require 'rspec/rails23/mocking/with_mocha'
+          Rspec.configuration.include(::Rspec::Rails23::Mocking::WithMocha, filter_options)
          when /rr/i
-          require 'micronaut/rails/mocking/with_rr'
-          Rspec::Core.configuration.include(::Micronaut::Rails::Mocking::WithRR, filter_options)
+          require 'rspec/rails23/mocking/with_rr'
+          Rspec.configuration.include(::Rspec::Rails23::Mocking::WithRR, filter_options)
         end
       end
       
@@ -45,4 +45,4 @@ module Micronaut
   end
 end
 
-::Rspec::Core::Configuration.send(:include, ::Micronaut::Rails::Configuration)
+::Rspec::Core::Configuration.send(:include, ::Rspec::Rails23::Configuration)

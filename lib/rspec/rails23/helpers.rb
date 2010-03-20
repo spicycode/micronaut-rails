@@ -1,5 +1,5 @@
-module Micronaut
-  module Rails
+module Rspec
+  module Rails23
     module Helpers
 
       class HelperController < ActionController::Base; end
@@ -75,7 +75,7 @@ module Micronaut
         end
 
         kls.before do
-          @controller = ::Micronaut::Rails::Helpers::HelperController.new
+          @controller = ::Rspec::Rails23::Helpers::HelperController.new
           @request = ActionController::TestRequest.new
           @response = ActionController::TestResponse.new
           @response.session = @request.session

@@ -1,5 +1,5 @@
-module Micronaut
-  module Rails
+module Rspec
+  module Rails23
     module Extensions
       
       module ActiveRecord
@@ -15,5 +15,5 @@ module Micronaut
 end
 
 if defined?(::ActiveRecord::Base)
-  ::ActiveRecord::Base.send(:include, ::Micronaut::Rails::Extensions::ActiveRecord)
+  ::ActiveRecord::Base.send(:include, ::Rspec::Rails23::Extensions::ActiveRecord)
 end
