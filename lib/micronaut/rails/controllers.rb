@@ -35,7 +35,7 @@ module Micronaut
       private
       
         def record_render(opts)
-          @_rendered ||= {}
+          @_rendered ||= {:partials => {}}
           (@_rendered[:template] ||= opts[:file]) if opts[:file]
           if opts[:partial]
             @_rendered[:partials][opts[:partial]] ||= 0
